@@ -8,18 +8,36 @@
   <input type="number" id="tempInput" placeholder="Enter temp" />
   <button onclick="submitTemp()">Submit</button>
 
-  <script>
-    async function submitTemp() {
-  const value = parseInt(document.getElementById("tempInput").value);
-  const res = await fetch('https://temperature-backend-yrvv.onrender.com/temperature', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ value })
-  });
-  const data = await res.json();
-  alert(data.message);
-}
+  <h1>Set Status</h1>
+<select id="statusInput">
+  <option value="open">Open</option>
+  <option value="closed">Closed</option>
+</select>
+<button onclick="submitStatus()">Submit Status</button>
 
-  </script>
+<script>
+  async function submitTemp() {
+    const value = parseInt(document.getElementById("tempInput").value);
+    const res = await fetch('/temperature', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ value })
+    });
+    const data = await res.json();
+    alert(data.message);
+  }
+
+  async function submitStatus() {
+    const value = document.getElementById("statusInput").value;
+    const res = await fetch('/status', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ value })
+    });
+    const data = await res.json();
+    alert(data.message);
+  }
+</script>
+
 </body>
 </html>
