@@ -11,6 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 let currentTemperature = 72; // default temp
+let currentStatus = "closed"; // default
 
 const path = require('path');
 
@@ -31,6 +32,23 @@ app.post('/temperature', (req, res) => {
     res.status(400).json({ success: false, message: 'Invalid temperature value' });
   }
 });
+
+// GET current status
+app.get('/status', (req, res) => {
+  res.json({ status: currentStatus });
+});
+
+// POST to update status
+app.post('/status', (req, res) => {
+  const { value } = req.body;
+  if (typeof value === 'string' && (value === 'open' || value === 'closed')) {
+    currentStatus = value;
+    res.json({ success: true, message: `Status updated to ${value}` });
+  } else {
+    res.status(400).json({ success: false, message: 'Invalid status' });
+  }
+});
+
 
 app.listen(port, () => {
     console.log(`Temperature API listening on port ${port}`);
