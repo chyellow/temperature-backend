@@ -54,4 +54,16 @@ app.listen(port, () => {
     console.log(`Temperature API listening on port ${port}`);
 });
   
+app.get('/privacy', (req, res) => {
+  res.send(`
+    <html>
+      <head><title>Privacy Policy</title></head>
+      <body>
+        <h1>Privacy Policy</h1>
+        <p>This app does not collect or store any personal data.</p>
+        <p>All pool status and temperature data is controlled and sent by administrators only.</p>
+      </body>
+    </html>
+  `);
+});
 
