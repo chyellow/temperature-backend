@@ -67,3 +67,18 @@ app.get('/privacy', (req, res) => {
   `);
 });
 
+app.get('/support', (req, res) => {
+  res.send(`
+    <html>
+      <head><title>Support</title></head>
+      <body>
+        <h1>Support</h1>
+        <p>For questions or issues regarding the ParkView Pool App, please contact:</p>
+        <ul>
+          <li>Email: <a href="mailto:christopher.hellriegel0122@gmail.com">christopher.hellriegel0122@gmail.com</a></li>
+        </ul>
+      </body>
+    </html>
+  `);
+});
+
